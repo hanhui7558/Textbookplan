@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>本科教学任务书</title>
+</head>
+<body>
+<h3>教材计划填报系统V1.0</h3>
+<table border="1" cellspacing="0" width="80%">
+    <tr>
+        <th>序号</th>
+        <th>开课单位</th>
+        <th>课程编号</th>
+        <th>课程名称</th>
+        <th>总学时</th>
+        <th>理论</th>
+        <th>实践</th>
+        <th>学分</th>
+        <th>年级</th>
+        <th>专业</th>
+        <th>人数</th>
+        <th>学生所在校区</th>
+        <th>选教材</th>
+    </tr>
+    {% for list in pageInfo.object_list %}
+        <tr>
+            <td>{{ list.id }}</td>
+            <td>{{ list.courseunit }}</td>
+            <td>{{ list.courseid }}</td>
+            <td>{{ list.coursename }}</td>
+            <td>{{ list.xueshi }}</td>
+            <td>{{ list.teaching }}</td>
+            <td>{{ list.practice }}</td>
+            <td>{{ list.xuefen }}</td>
+            <td>{{ list.grade }}</td>
+            <td>{{ list.major }}</td>
+            <td>{{ list.studentnum }}</td>
+            <td>{{ list.xiaoqu }}</td>
+            <td><a href="{% url 'textbookorder:tbord' %}">选订教材</a>|<a href="{% url 'textbookorder:tblist' %}">详情</a></td>
+        </tr>
+    {% endfor %}
+</table>
+<!--分页功能-->
+<div class="">
+    {% if pageInfo.has_previous %}
+        <a href="{% url 'index' id pageInfo.previous_page_number %}">上一页</a>
+    {% endif %}
+
+    {% if pageInfo.object_list %}
+    {% for page in pageInfo.paginator.page_range %}
+        {% if pageInfo.number == page %}
+            <a href="javescript:;">{{ page }}</a>
+        {% else %}
+            <a href="{% url 'index' id page %}">{{ page }}</a>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+{% if pageInfo.has_next %}
+    <a href="{% url 'index' id pageInfo.next_page_number %}">下一页</a>
+{% endif %}
+
+</div>
+
+
+
+<!--页码导航-->
+<ul style="float: left;">
+    <li style="float:left;list-style-type: none ">
+        {% if booklist.has_previous %}
+            <a href="?page=1">&laquo; 1</a>
+            <span>...</span>
+        <a href="?page={{ booklist.previous_page_number }}">
+            {{ booklist.previous_page_number }}
+        </a>
+        {% endif %}
+    </li>
+    <li style="float: left;list-style-type: none">
+        <!--当前页面-->
+        {{ booklist.number }}
+    </li>
+    <li style="float: left;list-style-type: none">
+        <!--如果不是最末页，则显示下翻按钮-->
+        {% if booklist.has_next %}
+        <a href="?page={{ booklist.next_page_number }}">
+            {{ booklist.next_page_number }}
+        </a>
+        <span>...</span>
+        <a href="?page={{ booklist.paginator.num_pages }}">
+            {{ booklist.paginator.num_pages }} &raquo;
+        </a>
+        {% endif %}
+    </li>
+</ul>
+</body>
+</html>

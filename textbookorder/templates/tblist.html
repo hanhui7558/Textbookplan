@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>填报教材列表</title>
+</head>
+<body>
+<h3>教材计划填报系统V1.0</h3>
+<p style="right: auto"><a href="#">导出表格</a> </p>
+<table border="1" cellspacing="0" width="80%">
+    <tr>
+        <th>序号</th>
+        <th>层次</th>
+        <th>课程名称</th>
+        <th>使用教材名称</th>
+        <th>版次</th>
+        <th>出版社</th>
+        <th>作者</th>
+        <th>ISBN书号</th>
+        <th>教材用途</th>
+        <th>是否国家规划教材</th>
+        <th>操作</th>
+{#        <th>人数</th>#}
+{#        <th>学生所在校区</th>#}
+{#        <th>选教材</th>#}
+    </tr>
+    {% for list in tblists %}
+        <tr>
+            <td>{{ list.id }}</td>
+            <td>{{ list.stulevel }}</td>
+            <td>{{ list.coursetitle }}</td>
+            <td>{{ list.tbname }}</td>
+            <td>{{ list.tbversion }}</td>
+            <td>{{ list.tbpublish }}</td>
+            <td>{{ list.tbauthor }}</td>
+            <td>{{ list.tbisbn }}</td>
+            <td>{{ list.tbpurpose }}</td>
+            <td>{{ list.tbfteach }}</td>
+{#            <td>{{ list.studentnum }}</td>#}
+{#            <td>{{ list.xiaoqu }}</td>#}
+            <td><a href="#">修改</a></td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

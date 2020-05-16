@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>填报教材</title>
+</head>
+<body>
+    <h3>教材计划填报系统V1.0</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>层次：
+            <select name="stulevel">
+                <option value>---请选择---</option>
+                <option value = "本科">本科</option>
+                <option value="本硕">本硕</option>
+                <option value="高职">高职</option>
+                <option value="研究生班">研究生班</option>
+            </select>
+        <p>课程名称：<input type="text" name="coursetitle"></p>
+        <p>使用教材名称：<input type="text" name="tbname"></p>
+        <p>版次：<input type="text" name="tbversion"></p>
+        <p>出版社：<input type="text" name="tbpublish"></p>
+        <p>作者：<input type="text" name="tbauthor"></p>
+        <p>ISBN书号：<input type="text" name="tbisbn"></p>
+
+        <p>教材用途：
+        <select name="tbpurpose">
+                <option value>---请选择---</option>
+                <option value = "学生用书">学生用书</option>
+                <option value="老师用书">老师用书</option>
+            </select>
+        </p>
+        <p>是否规划：
+            <select name="tbfteach">
+                 <option value>---请选择---</option>
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </p>
+        <p><input type="submit" value="提交"></p>
+    </form>
+
+</body>
+</html>
